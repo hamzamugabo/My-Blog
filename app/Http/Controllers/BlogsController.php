@@ -15,8 +15,10 @@ class BlogsController extends Controller
     public function index(){
         $blogs = Blog::all();
 
+        $comments = Blog::find(1)->comments;
 
-        return view('blogs.index', ['blogs' => $blogs]);
+
+        return view('blogs.index', ['blogs' => $blogs,'comments'=>$comments]);
     }
 
 
@@ -92,5 +94,14 @@ class BlogsController extends Controller
         $blog->delete();
 
         return redirect()->route('blogs_path');
+    }
+
+    public function index_comments(){
+        $comments = Blog::find(1)->comments;
+
+
+
+        return view('blogs.index',['blogs'=>$comments]);
+
     }
 }
