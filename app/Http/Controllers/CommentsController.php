@@ -9,27 +9,33 @@ use Illuminate\Http\Request;
 class CommentsController extends Controller
 {
     //
+    public function index(Comment $blog_id)
+    {
+        $comments = Comment::find( $blog_id);
 
-    public function index_comment($blog_id){
-        $comment = Comment::all();
+        return view('blogs.index_comment',['comments'=>$comments]);
 
 
-        return view('blogs.index', ['comments' => $comment]);
     }
+
+
     public function create_comment(){
 
-        return view('blogs.index');
+        return view('blogs.create_comment');
     }
-    public function store_comment(Blog $blog){
 
-        $comment=Comment::create([
-            'comment'=> \request('comment'),
-            'blog_id'=>$blog->id,
-        ]);
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store_comment(Request $request){
 
-        dd($comment);
+        $comments = new Comment();
+        $comments->comment=$request->comment;
+        $comments->blog_id=blog()->id;
+        $comments->save();
 
-        return redirect()->route('blogs_path');
+        return redirect()->route('comments_path');
 
     }
 
