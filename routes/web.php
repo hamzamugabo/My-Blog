@@ -39,11 +39,14 @@ Route::put('/blogs/{id}','BlogsController@update')->name('update_blog_path');
 Route::delete('/blogs/{id}','BlogsController@delete')->name('delete_blog_path');
 
 
+//Route::get('/blogs/comments','BlogsController@create_comment')->name('create_blog_path');
+
+
 
 
 Route::get('/blogs/comment','CommentsController@create_comment')->name('create_comment');
-Route::post('/blog','Comments@store_comment')->name('store_comment');
-Route::get('/comments','BlogsController@index')->name('comments_path');
+Route::post('/blog','CommentsController@store_comment')->name('store_comment');
+Route::get('/comments','CommentsController@index')->name('comments_path');
 
 
 //endblog
