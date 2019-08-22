@@ -13,6 +13,7 @@ class CommentsController extends Controller
     {
         $comments = Comment::find( $blog_id);
 
+
         return view('blogs.index_comment',['comments'=>$comments]);
 
 
@@ -31,13 +32,19 @@ class CommentsController extends Controller
     public function store_comment(Request $request){
 
         $comments = new Comment();
-        $comments->comment=$request->comment;
-        $comments->blog_id=blog()->id;
+//        $comments->comment=$request->comment;
+        $comment = Comment::find(1);
+//        $comment = Blog::find(1)->comments;
+
+        dd($comment->blog->title);
+
+//        dd($comments);
         $comments->save();
 
         return redirect()->route('comments_path');
 
     }
+
 
 
 

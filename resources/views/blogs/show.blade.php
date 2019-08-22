@@ -7,6 +7,13 @@
             <h3>{{$blog->title}}</h3>
             <p class="lead">{{$blog->contents}}</p>
            <p class="lead"> <img src="{{asset($blog->image)}}"  class="card-img-top" alt=""></p>
+            @foreach($blog->comments as $comment)
+
+
+                {{$comment->comment}}<br>
+
+
+            @endforeach
 
             <a href="{{route('edit_blog_path', ['blog'=>$blog->id])}}" class="btn btn-outline-info">Edit</a>
 
